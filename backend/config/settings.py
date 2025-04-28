@@ -121,7 +121,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 # DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# russianfood-backend/config/settings.py
 
 from pathlib import Path
 
