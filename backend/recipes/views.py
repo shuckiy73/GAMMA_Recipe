@@ -1,5 +1,3 @@
-# russianfood-backend/recipes/views.py
-
 from rest_framework import generics
 from .models import Category, Recipe
 from .serializers import CategorySerializer, RecipeSerializer
