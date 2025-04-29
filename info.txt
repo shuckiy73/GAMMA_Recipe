@@ -1,0 +1,12 @@
+CREATE DATABASE recipe_db;
+ALTER USER postgres WITH PASSWORD 'Shu0253&*';  -- если нужен новый пароль
+
+
+#запуск тестовых данных
+python manage.py loaddata sample_data.json
+
+
+Логин для входа:
+username: testuser
+
+password: 12345678
