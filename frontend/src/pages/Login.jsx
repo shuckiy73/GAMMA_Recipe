@@ -1,39 +1,54 @@
 import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { saveToken } from '../utils/auth';
 
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Logging in with', { username, password });
-    // Здесь можно будет подключить API запрос к бэкенду для реального логина
+    try {
+      const res = await axios.post('http://localhost:8000/api/auth/login/', {
+        username,
+        password,
+      });
+      saveToken(res.data.access);
+      navigate('/');
+    } catch (err) {
+      setError('Неверное имя пользователя или пароль');
+    }
   };
 
   return (
-    <div className="p-8 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Войти</h1>
-      <form onSubmit={handleLogin} className="flex flex-col gap-4">
-        <input
-          type="text"
-          placeholder="Имя пользователя"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="border p-2 rounded"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Пароль"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 rounded"
-          required
-        />
-        <button
-          type="submit"
-          className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
-        >
+    <div className="container mt-5" style={{ maxWidth: '500px' }}>
+      <h2 className="mb-4 text-center fw-bold">Войти</h2>
+      {error && <div className="alert alert-danger">{error}</div>}
+      <form onSubmit={handleLogin}>
+        <div className="mb-3">
+          <label className="form-label">Имя пользователя</label>
+          <input
+            type="text"
+            className="form-control"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="form-label">Пароль</label>
+          <input
+            type="password"
+            className="form-control"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit" className="btn btn-success w-100">
           Войти
         </button>
       </form>

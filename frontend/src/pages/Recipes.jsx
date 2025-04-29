@@ -12,10 +12,15 @@ export default function Recipes() {
   }, []);
 
   return (
-    <div className="p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-      {recipes.map(recipe => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
-      ))}
+    <div className="container mt-5">
+      <h2 className="mb-4 fw-bold text-center">Каталог рецептов</h2>
+      <div className="row g-4">
+        {recipes.map(recipe => (
+          <div className="col-md-4" key={recipe.id}>
+            <RecipeCard recipe={recipe} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
