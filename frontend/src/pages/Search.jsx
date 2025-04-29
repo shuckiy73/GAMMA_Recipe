@@ -13,24 +13,26 @@ export default function Search() {
   };
 
   return (
-    <div className="p-8">
-      <input
-        type="text"
-        placeholder="Поиск рецепта..."
-        value={query}
-        onChange={e => setQuery(e.target.value)}
-        className="border p-2 rounded w-2/3"
-      />
-      <button
-        onClick={handleSearch}
-        className="ml-4 bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
-      >
-        Искать
-      </button>
+    <div className="container mt-5">
+      <h2 className="mb-4 fw-bold text-center">Поиск рецептов</h2>
+      <div className="input-group mb-4">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Введите название рецепта"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button className="btn btn-success" onClick={handleSearch}>
+          Искать
+        </button>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+      <div className="row g-4">
         {results.map(recipe => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
+          <div className="col-md-4" key={recipe.id}>
+            <RecipeCard recipe={recipe} />
+          </div>
         ))}
       </div>
     </div>

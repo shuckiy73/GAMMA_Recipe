@@ -12,15 +12,22 @@ export default function RecipePage() {
       .catch(error => console.error(error));
   }, [id]);
 
-  if (!recipe) return <div className="p-8">Загрузка...</div>;
+  if (!recipe) return <div className="container p-5">Загрузка...</div>;
 
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-4">{recipe.title}</h1>
-      <img src={recipe.image} alt={recipe.title} className="w-full h-64 object-cover rounded-md mb-4" />
-      <h2 className="text-xl font-semibold mt-6 mb-2">Ингредиенты</h2>
+    <div className="container mt-5">
+      <h2 className="fw-bold mb-3">{recipe.title}</h2>
+      {recipe.image && (
+        <img
+          src={recipe.image}
+          alt={recipe.title}
+          className="img-fluid rounded mb-4"
+          style={{ maxHeight: '400px', objectFit: 'cover' }}
+        />
+      )}
+      <h4 className="fw-semibold">Ингредиенты</h4>
       <p>{recipe.ingredients}</p>
-      <h2 className="text-xl font-semibold mt-6 mb-2">Инструкция</h2>
+      <h4 className="fw-semibold">Инструкция</h4>
       <p>{recipe.instructions}</p>
     </div>
   );

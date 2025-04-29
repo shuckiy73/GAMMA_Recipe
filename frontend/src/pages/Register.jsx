@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 
 export default function Register() {
@@ -9,41 +8,43 @@ export default function Register() {
   const handleRegister = (e) => {
     e.preventDefault();
     console.log('Registering with', { username, email, password });
-    // Здесь можно будет подключить API запрос на регистрацию
   };
 
   return (
-    <div className="p-8 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Регистрация</h1>
-      <form onSubmit={handleRegister} className="flex flex-col gap-4">
-        <input
-          type="text"
-          placeholder="Имя пользователя"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="border p-2 rounded"
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="border p-2 rounded"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Пароль"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 rounded"
-          required
-        />
-        <button
-          type="submit"
-          className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
-        >
+    <div className="container mt-5" style={{ maxWidth: '500px' }}>
+      <h2 className="mb-4 text-center fw-bold">Регистрация</h2>
+      <form onSubmit={handleRegister}>
+        <div className="mb-3">
+          <label className="form-label">Имя пользователя</label>
+          <input
+            type="text"
+            className="form-control"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Email</label>
+          <input
+            type="email"
+            className="form-control"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="form-label">Пароль</label>
+          <input
+            type="password"
+            className="form-control"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit" className="btn btn-success w-100">
           Зарегистрироваться
         </button>
       </form>
