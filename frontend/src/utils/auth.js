@@ -1,17 +1,18 @@
 // Работа с токенами
+const TOKEN_KEY = 'access_token';
+
 export const saveToken = (token) => {
-    localStorage.setItem('token', token);
-  };
-  
-  export const getToken = () => {
-    return localStorage.getItem('token');
-  };
-  
-  export const removeToken = () => {
-    localStorage.removeItem('token');
-  };
-  
-  export const isAuthenticated = () => {
-    return !!getToken();
-  };
-  
+  localStorage.setItem(TOKEN_KEY, token);
+};
+
+export const getToken = () => {
+  return localStorage.getItem(TOKEN_KEY);
+};
+
+export const removeToken = () => {
+  localStorage.removeItem(TOKEN_KEY);
+};
+
+export const isAuthenticated = () => {
+  return !!getToken();
+};

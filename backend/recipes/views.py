@@ -2,6 +2,9 @@ from rest_framework import generics
 from .models import Category, Recipe
 from .serializers import CategorySerializer, RecipeSerializer
 from rest_framework.filters import SearchFilter
+from .serializers import FavoriteSerializer
+from rest_framework import viewsets, permissions
+from .models import Favorite
 
 class CategoryListAPIView(generics.ListAPIView):
     queryset = Category.objects.all()
@@ -17,3 +20,13 @@ class RecipeDetailAPIView(generics.RetrieveAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
 
+
+class FavoriteViewSet(viewsets.ModelViewSet):
+    serializer_class = FavoriteSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Favorite.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

@@ -6,6 +6,8 @@ import RecipePage from './pages/RecipePage';
 import Search from './pages/Search';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -18,9 +20,13 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <ToastContainer position="bottom-right" autoClose={2500} />
+
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
+
