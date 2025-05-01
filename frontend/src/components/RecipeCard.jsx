@@ -20,29 +20,28 @@ export default function RecipeCard({ recipe }) {
   const handleFavoriteToggle = async () => {
     const token = getToken();
     if (!token) return alert("Войдите в аккаунт");
-
-    if (favoriteId) {
-      await removeFavorite(favoriteId, token);
-      setFavoriteId(null);
-    } else {
-      const res = await addFavorite(recipe.id, token);
-      setFavoriteId(res.data.id);
-    }
-    if (favoriteId) {
-      await removeFavorite(favoriteId, token);
-      setFavoriteId(null);
-      toast.info("Удалено из избранного", {
-        className: "toastify-bootstrap toastify-bootstrap-info"
+  
+    try {
+      if (favoriteId) {
+        await removeFavorite(favoriteId, token);
+        setFavoriteId(null);
+        toast.info("Удалено из избранного", {
+          className: "toastify-bootstrap toastify-bootstrap-info"
+        });
+      } else {
+        const res = await addFavorite(recipe.id, token);
+        setFavoriteId(res.data.id);
+        toast.success("Добавлено в избранное", {
+          className: "toastify-bootstrap toastify-bootstrap-success"
+        });
+      }
+    } catch (err) {
+      toast.error("Ошибка при обновлении избранного", {
+        className: "toastify-bootstrap toastify-bootstrap-error"
       });
-    } else {
-      const res = await addFavorite(recipe.id, token);
-      setFavoriteId(res.data.id);
-      toast.success("Добавлено в избранное", {
-        className: "toastify-bootstrap toastify-bootstrap-success"
-      });
     }
-    
   };
+  
 
   return (
     <div className="card h-100 shadow-sm">

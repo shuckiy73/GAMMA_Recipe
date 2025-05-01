@@ -17,17 +17,21 @@ export default function Header() {
           <li className="nav-item"><Link className="nav-link" to="/">Главная</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/recipes">Рецепты</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/search">Поиск</Link></li>
+
           {!isAuthenticated() ? (
             <>
               <li className="nav-item"><Link className="nav-link" to="/login">Войти</Link></li>
               <li className="nav-item"><Link className="nav-link" to="/register">Регистрация</Link></li>
             </>
           ) : (
-            <li className="nav-item">
-              <button className="btn btn-outline-light btn-sm" onClick={handleLogout}>
-                Выйти
-              </button>
-            </li>
+            <>
+              <li className="nav-item"><Link className="nav-link" to="/profile">Профиль</Link></li>
+              <li className="nav-item">
+                <button className="btn btn-outline-light btn-sm ms-2" onClick={handleLogout}>
+                  Выйти
+                </button>
+              </li>
+            </>
           )}
         </ul>
       </div>

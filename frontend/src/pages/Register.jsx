@@ -1,18 +1,51 @@
 import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log('Registering with', { username, email, password });
+    setError('');
+
+    try {
+      await axios.post('http://localhost:8000/api/auth/register/', {
+        username,
+        email,
+        password,
+      });
+      toast.success('Регистрация успешна! Теперь вы можете войти.', {
+        className: "toastify-bootstrap toastify-bootstrap-success"
+      });
+      navigate('/login');
+    } catch (err) {
+      if (err.response && err.response.data) {
+        const data = err.response.data;
+        const errorMessage =
+          data.username?.[0] ||
+          data.email?.[0] ||
+          data.password?.[0] ||
+          'Ошибка регистрации';
+        setError(errorMessage);
+      } else {
+        setError('Сервер недоступен');
+      }
+      toast.error('Ошибка регистрации', {
+        className: "toastify-bootstrap toastify-bootstrap-error"
+      });
+    }
   };
 
   return (
     <div className="container mt-5" style={{ maxWidth: '500px' }}>
       <h2 className="mb-4 text-center fw-bold">Регистрация</h2>
+      {error && <div className="alert alert-danger">{error}</div>}
       <form onSubmit={handleRegister}>
         <div className="mb-3">
           <label className="form-label">Имя пользователя</label>

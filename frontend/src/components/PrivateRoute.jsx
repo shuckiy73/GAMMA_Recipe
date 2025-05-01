@@ -1,6 +1,16 @@
 import { Navigate } from 'react-router-dom';
-import { isAuthenticated } from '../utils/auth';
+import { isAuthenticated } from '../utils/auth'; // Импорт функции для проверки авторизации
 
-export default function PrivateRoute({ children }) {
-  return isAuthenticated() ? children : <Navigate to="/login" replace />;
-}
+const PrivateRoute = ({ children }) => {
+  const isUserAuthenticated = isAuthenticated();
+
+  if (!isUserAuthenticated) {
+    // Если пользователь не авторизован, перенаправляем на страницу логина
+    return <Navigate to="/login" />;
+  }
+
+  // Если пользователь авторизован, рендерим дочерние компоненты
+  return children;
+};
+
+export default PrivateRoute;
