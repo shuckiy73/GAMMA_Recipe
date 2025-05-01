@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+/* toast.css */
+.toastify-bootstrap {
+  border-radius: 0.4rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.toastify-bootstrap-success {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  border-left: 5px solid #198754;
+}
+
+.toastify-bootstrap-error {
+  background-color: #f8d7da;
+  color: #842029;
+  border-left: 5px solid #dc3545;
+}
+
+.toastify-bootstrap-info {
+  background-color: #cff4fc;
+  color: #055160;
+  border-left: 5px solid #0dcaf0;
+}

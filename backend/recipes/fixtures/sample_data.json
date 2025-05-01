@@ -1,58 +1,168 @@
 [
-    {
-      "model": "recipes.category",
-      "pk": 1,
-      "fields": {
-        "name": "Супы"
-      }
-    },
-    {
-      "model": "recipes.category",
-      "pk": 2,
-      "fields": {
-        "name": "Выпечка"
-      }
-    },
-    {
-      "model": "recipes.recipe",
-      "pk": 1,
-      "fields": {
-        "title": "Борщ",
-        "description": "Традиционный украинский суп на свекле.",
-        "ingredients": "Свекла, капуста, картофель, морковь, лук, говядина",
-        "instructions": "Сварить мясной бульон, добавить овощи и варить до готовности.",
-        "category": 1,
-        "created_at": "2024-01-01T12:00:00Z"
-      }
-    },
-    {
-      "model": "recipes.recipe",
-      "pk": 2,
-      "fields": {
-        "title": "Пирожки с капустой",
-        "description": "Вкусная домашняя выпечка",
-        "ingredients": "Мука, капуста, дрожжи, масло",
-        "instructions": "Замесить тесто, приготовить начинку, запечь в духовке.",
-        "category": 2,
-        "created_at": "2024-02-01T12:00:00Z"
-      }
+  {
+    "model": "recipes.category",
+    "pk": 1,
+    "fields": {
+      "name": "Супы"
     }
-    ,
-{
-  "model": "auth.user",
-  "pk": 1,
-  "fields": {
-    "username": "testuser",
-    "password": "pbkdf2_sha256$260000$qmUVyIdNzQe6hzCHNK9Vnq$Z7BLa5eh9p+EfDPqV2URbHe4rCNv5rNRWoxJPt7DHv0=",  
-    "is_superuser": false,
-    "is_staff": false,
-    "is_active": true,
-    "email": "testuser@example.com",
-    "first_name": "Test",
-    "last_name": "User",
-    "date_joined": "2024-01-01T00:00:00Z"
+  },
+  {
+    "model": "recipes.category",
+    "pk": 2,
+    "fields": {
+      "name": "Выпечка"
+    }
+  },
+  {
+    "model": "recipes.category",
+    "pk": 3,
+    "fields": {
+      "name": "Десерты"
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 1,
+    "fields": {
+      "title": "Борщ",
+      "description": "Традиционный украинский суп на свекле.",
+      "ingredients": "Свекла, капуста, картофель, морковь, лук, говядина",
+      "instructions": "Сварить мясной бульон, добавить овощи и варить до готовности.",
+      "category": 1,
+      "created_at": "2024-01-01T12:00:00Z",
+      "image": "https://example.com/images/borscht.jpg"
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 2,
+    "fields": {
+      "title": "Пирожки с капустой",
+      "description": "Вкусная домашняя выпечка",
+      "ingredients": "Мука, капуста, дрожжи, масло",
+      "instructions": "Замесить тесто, приготовить начинку, запечь в духовке.",
+      "category": 2,
+      "created_at": "2024-02-01T12:00:00Z",
+      "image": "https://example.com/images/cabbage_pies.jpg"
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 3,
+    "fields": {
+      "title": "Окрошка",
+      "description": "Летний холодный суп на кефире.",
+      "ingredients": "Кефир, огурцы, редис, яйца, картофель, зелень",
+      "instructions": "Порезать все ингредиенты и залить кефиром.",
+      "category": 1,
+      "created_at": "2024-04-15T10:00:00Z",
+      "image": "https://example.com/images/okroshka.jpg"
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 4,
+    "fields": {
+      "title": "Постные щи",
+      "description": "Щи без мяса — для постного стола.",
+      "ingredients": "Капуста, морковь, лук, картофель, томатная паста",
+      "instructions": "Обжарить овощи, добавить воду и варить 30 минут.",
+      "category": 1,
+      "created_at": "2024-04-16T10:00:00Z",
+      "image": "https://example.com/images/vegetarian_shchi.jpg"
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 5,
+    "fields": {
+      "title": "Чизкейк",
+      "description": "Нежный десерт с творожной начинкой.",
+      "ingredients": "Печенье, сливочный сыр, яйца, сахар, ваниль",
+      "instructions": "Смешать ингредиенты, запечь в форме.",
+      "category": 3,
+      "created_at": "2024-04-17T10:00:00Z",
+      "image": "https://example.com/images/cheesecake.jpg"
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 6,
+    "fields": {
+      "title": "Медовик",
+      "description": "Слоёный торт с мёдом и кремом.",
+      "ingredients": "Мёд, яйца, мука, сахар, сметана",
+      "instructions": "Приготовить коржи и промазать кремом.",
+      "category": 3,
+      "created_at": "2024-04-18T10:00:00Z",
+      "image": "https://example.com/images/medovik.jpg"
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 7,
+    "fields": {
+      "title": "Сырники",
+      "description": "Жареные творожные лепёшки.",
+      "ingredients": "Творог, яйца, сахар, мука, масло",
+      "instructions": "Сформировать лепёшки и обжарить на сковороде.",
+      "category": 3,
+      "created_at": "2024-04-19T10:00:00Z",
+      "image": "https://example.com/images/syrniki.jpg"
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 8,
+    "fields": {
+      "title": "Кекс с изюмом",
+      "description": "Классическая выпечка к чаю.",
+      "ingredients": "Мука, сахар, масло, яйца, изюм, разрыхлитель",
+      "instructions": "Смешать ингредиенты, выпекать 40 минут.",
+      "category": 2,
+      "created_at": "2024-04-20T10:00:00Z",
+      "image": "https://example.com/images/raisin_cake.jpg"
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 9,
+    "fields": {
+      "title": "Хачапури",
+      "description": "Грузинская лепёшка с сыром.",
+      "ingredients": "Мука, сыр сулугуни, яйца, кефир",
+      "instructions": "Замесить тесто, добавить сырную начинку, запечь.",
+      "category": 2,
+      "created_at": "2024-03-10T12:00:00Z",
+      "image": "https://example.com/images/khachapuri.jpg"
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 10,
+    "fields": {
+      "title": "Пирог с вишней",
+      "description": "Сладкий пирог с сочной начинкой.",
+      "ingredients": "Мука, вишня, сахар, масло, яйца",
+      "instructions": "Приготовить тесто, выложить вишнёвую начинку, запечь в духовке.",
+      "category": 2,
+      "created_at": "2024-04-05T12:00:00Z",
+      "image": "https://example.com/images/cherry_pie.jpg"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "testuser",
+      "password": "pbkdf2_sha256$260000$qmUVyIdNzQe6hzCHNK9Vnq$Z7BLa5eh9p+EfDPqV2URbHe4rCNv5rNRWoxJPt7DHv0=",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "email": "testuser@example.com",
+      "first_name": "Test",
+      "last_name": "User",
+      "date_joined": "2024-01-01T00:00:00Z"
+    }
   }
-}
-
-  ]
-  
+]

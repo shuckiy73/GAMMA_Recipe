@@ -6,6 +6,11 @@ import RecipePage from './pages/RecipePage';
 import Search from './pages/Search';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import './App.css';
+import Profile from './pages/Profile';
+import PrivateRoute from './components/PrivateRoute'; // Импорт компонента PrivateRoute
 
 function App() {
   return (
@@ -18,7 +23,15 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        {/* Защищённый маршрут для профиля */}
+        <Route path="/profile" element={
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        } />
       </Routes>
+      <ToastContainer position="bottom-right" autoClose={2500} />
     </Router>
   );
 }

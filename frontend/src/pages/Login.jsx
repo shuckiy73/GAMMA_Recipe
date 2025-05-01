@@ -2,24 +2,35 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { saveToken } from '../utils/auth';
+import { toast } from 'react-toastify';
 
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const res = await axios.post('http://localhost:8000/api/auth/login/', {
         username,
         password,
       });
-      saveToken(res.data.access);
+      saveToken(res.data.access, res.data.refresh);
+      toast.success("Добро пожаловать!", {
+        className: "toastify-bootstrap toastify-bootstrap-success"
+      });
       navigate('/');
     } catch (err) {
       setError('Неверное имя пользователя или пароль');
+      toast.error("Ошибка входа", {
+        className: "toastify-bootstrap toastify-bootstrap-error"
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -34,7 +45,10 @@ export default function Login() {
             type="text"
             className="form-control"
             value={username}
-            onChange={e => setUsername(e.target.value)}
+            onChange={e => {
+              setUsername(e.target.value);
+              setError('');
+            }}
             required
           />
         </div>
@@ -44,14 +58,20 @@ export default function Login() {
             type="password"
             className="form-control"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={e => {
+              setPassword(e.target.value);
+              setError('');
+            }}
             required
           />
         </div>
-        <button type="submit" className="btn btn-success w-100">
-          Войти
+        <button type="submit" className="btn btn-success w-100" disabled={isLoading}>
+          {isLoading ? 'Входим...' : 'Войти'}
         </button>
       </form>
+      <div className="text-center mt-3">
+        <p>Нет аккаунта? <a href="/register">Зарегистрируйтесь</a></p>
+      </div>
     </div>
   );
 }

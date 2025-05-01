@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Category, Recipe
+from .models import Favorite
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,3 +13,9 @@ class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
         fields = '__all__'
+
+
+class FavoriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Favorite
+        fields = ['id', 'recipe']
