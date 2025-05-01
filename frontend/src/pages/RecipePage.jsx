@@ -14,17 +14,26 @@ export default function RecipePage() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get(`/api/recipes/${id}/`)
-      .then(res => setRecipe(res.data))
-      .catch(() => setError('Ошибка загрузки рецепта'))
-      .finally(() => setLoading(false));
+    const fetchRecipe = async () => {
+      try {
+        const res = await axios.get(`/api/recipes/${id}/`);
+        setRecipe(res.data);
+      } catch (err) {
+        setError('Ошибка загрузки рецепта');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRecipe();
 
     const token = getToken();
     if (token) {
       getFavorites(token).then(res => {
         const match = res.data.find(fav => fav.recipe === parseInt(id));
         if (match) setFavoriteId(match.id);
-      });
+      }).catch(err => console.error('Ошибка при получении избранных рецептов:', err));
     }
   }, [id]);
 
@@ -72,23 +81,31 @@ export default function RecipePage() {
 
       <div className="mb-3">
         <strong>Описание:</strong>
-        <p>{recipe.description}</p>
+        <p>{recipe.description || 'Описание отсутствует'}</p>
       </div>
 
       <div className="mb-3">
         <strong>Ингредиенты:</strong>
-        <ul>
-          {recipe.ingredients.split('\n').map((item, index) => (
-            <li key={index}>{item.trim()}</li>
-          ))}
-        </ul>
+        {recipe.ingredients ? (
+          <ul>
+            {recipe.ingredients.split('\n').map((item, index) => (
+              <li key={index}>{item.trim()}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>Ингредиенты не указаны</p>
+        )}
       </div>
 
       <div className="mb-3">
         <strong>Инструкция:</strong>
-        {recipe.instructions.split('\n').map((step, index) => (
-          <p key={index}>{step.trim()}</p>
-        ))}
+        {recipe.instructions ? (
+          recipe.instructions.split('\n').map((step, index) => (
+            <p key={index}>{step.trim()}</p>
+          ))
+        ) : (
+          <p>Инструкция не указана</p>
+        )}
       </div>
 
       <button

@@ -10,7 +10,10 @@ export default function Recipes() {
   useEffect(() => {
     api.get('recipes/')
       .then(response => setRecipes(response.data))
-      .catch(err => setError('Ошибка загрузки рецептов'))
+      .catch(err => {
+        setError('Ошибка загрузки рецептов');
+        console.error('Ошибка:', err); // Логирование ошибки для отладки
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -21,8 +24,8 @@ export default function Recipes() {
       {loading && <p className="text-center">Загрузка рецептов...</p>}
       {error && <p className="text-danger text-center">{error}</p>}
 
-      {!loading && recipes.length === 0 && (
-        <p className="text-center text-muted">Рецепты не найдены.</p>
+      {!loading && recipes.length === 0 && !error && (
+        <p className="text-center text-muted">Рецепты не найдены. Возможно, их еще нет или произошла ошибка в поиске.</p>
       )}
 
       <div className="row g-4">
