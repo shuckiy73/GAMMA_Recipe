@@ -37,11 +37,15 @@ export default function RecipePage() {
     if (favoriteId) {
       await removeFavorite(favoriteId, token);
       setFavoriteId(null);
-      toast.info("Удалено из избранного");
+      toast.info("Удалено из избранного", {
+        className: "toastify-bootstrap toastify-bootstrap-info"
+      });
     } else {
       const res = await addFavorite(id, token);
       setFavoriteId(res.data.id);
-      toast.success("Добавлено в избранное");
+      toast.success("Добавлено в избранное", {
+        className: "toastify-bootstrap toastify-bootstrap-success"
+      });
     }
     
   };
