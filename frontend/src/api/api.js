@@ -6,12 +6,20 @@ const api = axios.create({
 
 export default api;
 
-// Используем общий экземпляр `api`
+// Получение избранного
 export const getFavorites = async (token) =>
-  api.get('favorites/', { headers: { Authorization: `Bearer ${token}` } });
+  api.get('favorites/', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 
+// ✅ Добавление рецепта в избранное
 export const addFavorite = (recipeId, token) =>
-  api.post('favorites/', { recipe: recipeId }, { headers: { Authorization: `Bearer ${token}` } });
+  api.post('favorites/', { recipe_id: recipeId }, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 
+// Удаление избранного по ID
 export const removeFavorite = (favoriteId, token) =>
-  api.delete(`favorites/${favoriteId}/`, { headers: { Authorization: `Bearer ${token}` } });
+  api.delete(`favorites/${favoriteId}/`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });

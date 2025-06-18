@@ -16,6 +16,12 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
+    recipe = RecipeSerializer(read_only=True)  # для отображения
+    recipe_id = serializers.PrimaryKeyRelatedField(
+        queryset=Recipe.objects.all(), source='recipe', write_only=True
+    )
+
     class Meta:
         model = Favorite
-        fields = ['id', 'recipe']
+        fields = ['id', 'recipe', 'recipe_id']
+
