@@ -1,21 +1,23 @@
-const TOKEN_KEY = 'access_token';
+const ACCESS_TOKEN_KEY = 'access_token';
+const REFRESH_TOKEN_KEY = 'refresh_token';
 
-// Сохраняет токен в localStorage
-export const saveToken = (token) => {
-  localStorage.setItem(TOKEN_KEY, token);
+// Сохраняет access и refresh токены
+export const saveTokens = (access, refresh) => {
+  localStorage.setItem(ACCESS_TOKEN_KEY, access);
+  localStorage.setItem(REFRESH_TOKEN_KEY, refresh);
 };
 
-// Получает токен из localStorage
-export const getToken = () => {
-  return localStorage.getItem(TOKEN_KEY);
-};
+// Получает access token
+export const getToken = () => localStorage.getItem(ACCESS_TOKEN_KEY);
 
-// Удаляет токен из localStorage (при выходе из системы)
-export const removeToken = () => {
-  localStorage.removeItem(TOKEN_KEY);
+// Получает refresh token
+export const getRefreshToken = () => localStorage.getItem(REFRESH_TOKEN_KEY);
+
+// Удаляет токены
+export const removeTokens = () => {
+  localStorage.removeItem(ACCESS_TOKEN_KEY);
+  localStorage.removeItem(REFRESH_TOKEN_KEY);
 };
 
 // Проверяет, авторизован ли пользователь
-export const isAuthenticated = () => {
-  return Boolean(getToken());
-};
+export const isAuthenticated = () => Boolean(getToken());

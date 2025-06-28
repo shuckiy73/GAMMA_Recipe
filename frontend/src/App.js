@@ -10,7 +10,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import './App.css';
 import Profile from './pages/Profile';
-import PrivateRoute from './components/PrivateRoute'; // Импорт компонента PrivateRoute
+import PrivateRoute from './components/PrivateRoute';
+import AddRecipe from './pages/AddRecipe';
+import EditRecipe from './pages/EditRecipe';
 
 function App() {
   return (
@@ -24,13 +26,24 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* Защищённый маршрут для профиля */}
+        {/* Защищённые маршруты */}
         <Route path="/profile" element={
           <PrivateRoute>
             <Profile />
           </PrivateRoute>
         } />
+        <Route path="/add-recipe" element={
+          <PrivateRoute>
+            <AddRecipe />
+          </PrivateRoute>
+        } />
+        <Route path="/recipes/:id/edit" element={
+          <PrivateRoute>
+            <EditRecipe />
+          </PrivateRoute>
+        } />
       </Routes>
+
       <ToastContainer position="bottom-right" autoClose={2500} />
     </Router>
   );

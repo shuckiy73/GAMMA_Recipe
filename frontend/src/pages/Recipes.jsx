@@ -9,8 +9,8 @@ export default function Recipes() {
 
   useEffect(() => {
     api.get('recipes/')
-      .then(response => setRecipes(response.data))
-      .catch(err => {
+    .then(response => setRecipes(response.data.results || []))
+    .catch(err => {
         setError('Ошибка загрузки рецептов');
         console.error('Ошибка:', err); // Логирование ошибки для отладки
       })

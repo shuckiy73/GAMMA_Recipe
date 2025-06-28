@@ -1,11 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { isAuthenticated, removeToken } from '../utils/auth';
+import { isAuthenticated, removeTokens } from '../utils/auth';
 
 export default function Header() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    removeToken();
+    removeTokens();
     navigate('/');
   };
 

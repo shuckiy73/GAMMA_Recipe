@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { saveToken } from '../utils/auth';
+import { saveTokens } from '../utils/auth';
 import { toast } from 'react-toastify';
 
 export default function Login() {
@@ -19,7 +19,7 @@ export default function Login() {
         username,
         password,
       });
-      saveToken(res.data.access, res.data.refresh);
+      saveTokens(res.data.access, res.data.refresh);
       toast.success("Добро пожаловать!", {
         className: "toastify-bootstrap toastify-bootstrap-success"
       });

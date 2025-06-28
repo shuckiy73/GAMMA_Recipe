@@ -6,6 +6,7 @@ from .serializers import FavoriteSerializer
 from rest_framework import viewsets, permissions
 from .models import Favorite
 
+
 class CategoryListAPIView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -30,3 +31,12 @@ class FavoriteViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class RecipeViewSet(viewsets.ModelViewSet):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save()  # можно добавить поле автора, если нужно
