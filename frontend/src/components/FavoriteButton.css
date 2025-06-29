@@ -1,0 +1,22 @@
+.favorite-btn {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .favorite-btn:hover {
+    background: #f5f5f5;
+  }
+  
+  .favorite-btn.active {
+    background: #ffd700;
+    border-color: #ffd700;
+  }
+  
+  .favorite-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }

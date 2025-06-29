@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Recipe
-from .models import Favorite
+from .models import Category, Recipe, Favorite
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,3 +24,12 @@ class FavoriteSerializer(serializers.ModelSerializer):
         model = Favorite
         fields = ['id', 'recipe', 'recipe_id']
 
+
+class FavoriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Favorite
+        fields = ['id', 'user', 'recipe', 'created_at']
+        read_only_fields = ['user']
+
+class FavoriteActionSerializer(serializers.Serializer):
+    recipe_id = serializers.IntegerField()

@@ -26,3 +26,13 @@ class Favorite(models.Model):
 
     class Meta:
         unique_together = ('user', 'recipe')
+
+class Favorite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    recipe = models.ForeignKey('Recipe', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'recipe')
+        verbose_name = 'Избранное'
+        verbose_name_plural = 'Избранные рецепты'
